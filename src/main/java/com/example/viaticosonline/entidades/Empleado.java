@@ -1,6 +1,10 @@
 package com.example.viaticosonline.entidades;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity // paquete opensource
 @Table(name="empleados" ) // nombre de la tabla
@@ -24,7 +28,19 @@ public class Empleado {
     @Column(name = "salario")
     private Double salario;
 
+    @OneToMany(mappedBy = "empleado") // estaclecemos relación uno a muchos
+    @JsonManagedReference // relación uno a muchos
+    private List<Viaje> viajes= new ArrayList<Viaje>();
+
     public Empleado() {
+    }
+
+    public List<Viaje> getViajes() {
+        return viajes;
+    }
+
+    public void setViajes(List<Viaje> viajes) {
+        this.viajes = viajes;
     }
 
     public Integer getId() {
