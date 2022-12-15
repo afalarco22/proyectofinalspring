@@ -24,7 +24,6 @@ public class ServicioEmpleado implements ServicioBase <Empleado> {
             // almacenamos la busqueda en una lista
             List<Empleado> empleados = repositorioEmpleado.findAll();
             return empleados;
-
         }catch (Exception error){
             throw new Exception(error.getMessage());
 
@@ -47,14 +46,21 @@ public class ServicioEmpleado implements ServicioBase <Empleado> {
 
     @Override
     public Empleado registrar(Empleado entidad) throws Exception {
-        return null;
+        try {
+            entidad= repositorioEmpleado.save(entidad);
+            return entidad;
+
+        }catch(Exception error){
+            throw new Exception(error.getMessage());
+
+        }
     }
 
     @Override
     public Empleado editar(Integer id, Empleado entidad) throws Exception {
         try {
-            Optional<Empleado> empleadoBucado = repositorioEmpleado.findById(id);
-            Empleado empleado = empleadoBucado.get();
+            Optional<Empleado> empleadoBuscado = repositorioEmpleado.findById(id);
+            Empleado empleado = empleadoBuscado.get();
             empleado = repositorioEmpleado.save(entidad);
             return empleado;
 

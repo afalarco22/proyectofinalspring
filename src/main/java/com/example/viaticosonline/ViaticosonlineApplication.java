@@ -8,6 +8,9 @@ public class ViaticosonlineApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ViaticosonlineApplication.class, args);
+
+
+
 	}
 
 }
